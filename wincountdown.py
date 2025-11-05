@@ -251,13 +251,37 @@ class ConfigManager:
     """Handles configuration loading and creation"""
 
     def __init__(self, script_dir=None):
-        # Use XDG Base Directory specification for Linux
-        config_dir = Path.home() / '.config' / 'wincountdown'
-        cache_dir = Path.home() / '.cache' / 'wincountdown'
+        # Detect if running as installed package or standalone script
+        # If installed via pip, __file__ will be in site-packages
+        # If running standalone, __file__ will be in the script directory
+        if script_dir and os.path.exists(script_dir):
+            # Running as standalone script - use script directory
+            is_installed = False
+        else:
+            # Check if we're in site-packages (installed)
+            try:
+                import wincountdown
+                is_installed = 'site-packages' in wincountdown.__file__
+            except (ImportError, AttributeError):
+                is_installed = False
+
+        if is_installed:
+            # Installed via pip - use XDG Base Directory specification
+            config_dir = Path.home() / '.config' / 'wincountdown'
+            cache_dir = Path.home() / '.cache' / 'wincountdown'
+        else:
+            # Running standalone - use script directory
+            if script_dir:
+                config_dir = Path(script_dir)
+                cache_dir = Path(script_dir)
+            else:
+                config_dir = Path.cwd()
+                cache_dir = Path.cwd()
 
         # Create directories if they don't exist
         config_dir.mkdir(parents=True, exist_ok=True)
-        cache_dir.mkdir(parents=True, exist_ok=True)
+        if config_dir != cache_dir:
+            cache_dir.mkdir(parents=True, exist_ok=True)
 
         self.config_file = str(config_dir / 'config.json')
         self.debug_log_file = str(cache_dir / 'debug.log')
@@ -1037,8 +1061,18 @@ def print_help():
 
 def main():
     """Main entry point"""
-    # Initialize config manager (uses XDG directories on Linux)
-    config_manager = ConfigManager()
+    # Get the directory where the script is located
+    # This is used to detect standalone vs installed mode
+    if getattr(sys, 'frozen', False):
+        # Running as compiled executable
+        script_dir = os.path.dirname(sys.executable)
+    else:
+        # Running as Python script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Initialize config manager
+    # Will use script_dir for standalone, XDG dirs for installed
+    config_manager = ConfigManager(script_dir)
 
     # Check for --debug flag early (before full argument parsing)
     debug_flag_enabled = '--debug' in sys.argv

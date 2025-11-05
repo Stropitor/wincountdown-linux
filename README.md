@@ -152,15 +152,21 @@ sudo dnf install beep
 
 ## Configuration File
 
-Configuration file is automatically created on first run at:
+Configuration file location depends on how you run wincountdown:
+
+**When installed via pip:**
 ```
-~/.config/wincountdown/config.json
+~/.config/wincountdown/config.json    # Configuration
+~/.cache/wincountdown/debug.log       # Debug logs
 ```
 
-Debug logs (when enabled) are written to:
+**When running standalone (./wincountdown.py):**
 ```
-~/.cache/wincountdown/debug.log
+./config.json      # Configuration (in script directory)
+./debug.log        # Debug logs (in script directory)
 ```
+
+The configuration file is automatically created on first run.
 
 ### Basic Settings
 
