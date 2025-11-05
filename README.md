@@ -20,6 +20,7 @@ A command-line countdown timer for Linux with ASCII art display, customizable al
 - Debug mode for troubleshooting (config file or command-line flag)
 
 ## Usage
+
 ```bash
 wincountdown <time> [options]
 ```
@@ -48,6 +49,7 @@ wincountdown <time> [options]
 | `-h, --help` | Show help message |
 
 ### Examples
+
 ```bash
 # Basic countdowns
 wincountdown 30s
@@ -91,7 +93,7 @@ wincountdown 10s -f 1000 -b 1 -d 2000
 
 ### Arch Linux (AUR)
 
-**Coming soon!** Once published to AUR:
+To be released. Once published to AUR:
 
 ```bash
 yay -S wincountdown
@@ -109,7 +111,7 @@ cd wincountdown-linux
 pip install .
 ```
 
-Now you can run `wincountdown` from anywhere!
+The command is then available system-wide.
 
 #### Option 2: Install with setup.py
 
@@ -148,11 +150,11 @@ sudo apt install beep
 sudo dnf install beep
 ```
 
-**Note:** Without the `beep` package, the program will fall back to the terminal bell (`\a`) character, which may not produce sound depending on your terminal emulator settings.
+**Note:** Without the `beep` package, the program will fall back to the terminal bell (`\a`) character, which may not produce sound depending on terminal settings.
 
 ## Configuration File
 
-Configuration file location depends on how you run wincountdown:
+Configuration file location depends on how wincountdown is run:
 
 **When installed via pip:**
 ```
@@ -190,7 +192,7 @@ Digits (0-9) and colon (:) can be customized in the `ascii_digits` section.
 **Requirements:**
 - Each digit must be exactly 8 lines tall
 - All digits should have consistent width (11 characters recommended)
-- Any characters can be used: `#`, `*`, `@`, `█`, `░`, `▓`, etc.
+- Any characters can be used: `#`, `*`, `@`, `█`, `▒`, `▓`, etc.
 
 **Example - Default style:**
 ```json
@@ -331,7 +333,7 @@ When enabled:
 ## Notes
 
 - Maximum time: 99:59:59 (or 99:99:99 in metric mode)
-- **Clock mode:** Displays current system time in 24-hour format (HH:MM:SS). Always shows 24-hour time regardless of system settings. Press Ctrl+C to exit.
+- Clock mode displays current system time in 24-hour format (HH:MM:SS). Always shows 24-hour time regardless of system settings. Press Ctrl+C to exit.
 - Timer automatically shows only relevant units (seconds, MM:SS, or HH:MM:SS)
 - Start time and end time are displayed at the bottom
 - Beep alert plays when countdown finishes (requires `beep` package for customizable sounds)
@@ -372,7 +374,7 @@ When enabled:
 
 **Beep requires sudo/permissions:**
 ```bash
-# Option 1: Add your user to the audio group
+# Option 1: Add user to the audio group
 sudo usermod -a -G audio $USER
 # Log out and log back in
 
@@ -381,9 +383,9 @@ sudo chmod u+s /usr/bin/beep
 ```
 
 **Unicode characters not displaying:**
-- Ensure your terminal supports UTF-8 encoding
-- Modern terminals (gnome-terminal, konsole, alacritty, kitty) support Unicode
-- Try simpler ASCII characters if Unicode blocks don't display
+- Terminal must support UTF-8 encoding
+- gnome-terminal, konsole, alacritty, kitty support Unicode
+- Use simpler ASCII characters if Unicode blocks fail to render
 - Config file must be saved as UTF-8 encoding
 
 **Debug log not created:**
@@ -393,8 +395,8 @@ sudo chmod u+s /usr/bin/beep
 - Ensure `~/.cache/wincountdown/` directory exists (created automatically on first run)
 
 **ANSI escape codes visible (garbled output):**
-- Your terminal may not support ANSI escape sequences
-- Try a modern terminal emulator (most support ANSI)
+- Terminal does not support ANSI escape sequences
+- Use a terminal emulator with ANSI support
 - Verify `TERM` environment variable is set correctly
 
 ## Development
@@ -411,7 +413,6 @@ wincountdown-linux/
 │
 ├── docs/                    # Documentation
 │   ├── INSTALL.md           # Installation & testing guide
-│   ├── PORTING_NOTES.md     # Windows→Linux porting details
 │   └── CODEBASE_OVERVIEW.md # Complete code documentation
 │
 ├── packaging/               # Distribution packages
@@ -430,11 +431,10 @@ wincountdown-linux/
 For more detailed information, see:
 - **[Installation Guide](docs/INSTALL.md)** - Detailed installation instructions and troubleshooting
 - **[Codebase Overview](docs/CODEBASE_OVERVIEW.md)** - Complete code documentation and architecture
-- **[Porting Notes](docs/PORTING_NOTES.md)** - Details about the Windows→Linux port
 
 ### Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests.
+Contributions are welcome. Please submit issues or pull requests.
 
 ## License
 
@@ -446,4 +446,5 @@ Created by stropitor
 
 ## Related Projects
 
-- [wincountdown](https://github.com/Stropitor/wincountdown-windows) - Original Windows version
+- [wincountdown-windows](https://github.com/Stropitor/wincountdown-windows) - Windows version
+- [wincountdown-mac](https://github.com/Stropitor/wincountdown-mac) - Mac version
