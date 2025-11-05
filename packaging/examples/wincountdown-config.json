@@ -1,0 +1,206 @@
+{
+    "//": "================================================================",
+    "//1": "WINCOUNTDOWN CONFIGURATION FILE",
+    "//2": "================================================================",
+    "//3": "Customize default settings for wincountdown timer and clock.",
+    "//4": "All settings can be overridden by command-line flags.",
+    "//5": "",
+
+    "//debug_section": "--- DEBUG MODE ---",
+    "//debug_note1": "Logs detailed execution info to wincountdown-debug.log",
+    "//debug_note2": "Can also be enabled with --debug flag (recommended for troubleshooting)",
+
+    "debug_mode": false,
+
+    "//separator1": "",
+    "//defaults_section": "--- DEFAULT SETTINGS ---",
+    "//defaults_note": "These values are used unless overridden by command-line flags",
+
+    "//beep_header": "",
+    "//beep_desc": "Beep Alert Configuration",
+
+    "default_frequency": 800,
+    "//freq_note": "Frequency in Hz (37-32767). Examples: 440 (musical A), 800 (default), 1000 (high pitch)",
+
+    "default_beeps": 3,
+    "//beeps_note": "Number of times to beep when countdown finishes (minimum: 1)",
+
+    "default_duration": 1000,
+    "//duration_note": "How long each beep lasts in milliseconds (1000ms = 1 second)",
+
+    "default_gap": 300,
+    "//gap_note": "Pause between beeps in milliseconds (only used when beeps > 1)",
+
+    "//mode_header": "",
+    "//mode_desc": "Default Mode Settings",
+
+    "default_silent": false,
+    "//silent_note": "Silent mode: true = no beeps, false = beeps enabled. Override with -s flag.",
+
+    "default_loop": false,
+    "//loop_note": "Loop mode: true = auto-restart timer, false = stop after finish. Override with -l flag.",
+
+    "default_metric": false,
+    "//metric_note": "Metric time (joke mode): true = display in base-100 time (1h=100m, 1m=100s), false = normal time",
+
+    "//separator2": "",
+    "//advanced_section": "--- ADVANCED BEHAVIORS ---",
+    "//advanced_note": "These options enable power-user features and custom workflows",
+
+    "//noargs_header": "",
+    "//noargs_desc": "No-Arguments Behavior",
+    "//noargs_explain": "Controls what happens when you type 'wincountdown' with no arguments",
+
+    "enable_no_args_default": false,
+    "//enable_noargs_note": "Set to true to run a custom command instead of showing help screen",
+
+    "no_args_default_command": "help",
+    "//noargs_cmd_note1": "Options:",
+    "//noargs_cmd_note2": "  'help' = show help screen (default behavior)",
+    "//noargs_cmd_note3": "  '25m' = start 25-minute timer immediately",
+    "//noargs_cmd_note4": "  '5m -l -s' = start 5-minute silent looping timer",
+    "//noargs_cmd_note5": "  '--clock' = launch clock mode",
+    "//noargs_cmd_example": "Example: Set to '25m' for instant Pomodoro timer",
+
+    "//timeonly_header": "",
+    "//timeonly_desc": "Time-Only Arguments Behavior",
+    "//timeonly_explain": "Auto-inject flags when user provides ONLY a time (no other flags)",
+    "//timeonly_example": "Example: Make 'wincountdown 5m' behave like 'wincountdown 5m -l -s'",
+
+    "enable_time_only_defaults": false,
+    "//enable_timeonly_note": "Set to true to automatically add flags when only time is provided",
+
+    "time_only_default_flags": [],
+    "//timeonly_flags_note1": "Flags to auto-add when user types just time (e.g., 'wincountdown 5m'):",
+    "//timeonly_flags_note2": "  [\"-l\", \"-s\"] = always loop and silent",
+    "//timeonly_flags_note3": "  [\"-l\"] = always loop",
+    "//timeonly_flags_note4": "  [\"-f\", \"1000\", \"-b\", \"5\"] = custom beep pattern",
+    "//timeonly_flags_note5": "Available flags: -s -l -m -f -b -d -g",
+    "//timeonly_flags_note6": "Note: Only works when NO flags are typed. Manual flags disable this behavior.",
+
+    "//separator3": "",
+    "//ascii_section": "--- ASCII ART CUSTOMIZATION ---",
+    "//ascii_note1": "Customize how digits (0-9) and colon (:) appear in the display",
+    "//ascii_note2": "Use any characters: # * @ █ ░ ▓ or plain text",
+    "//ascii_note3": "",
+    "//ascii_rules": "Rules:",
+    "//ascii_rules1": "  - Each digit must be exactly 8 lines tall",
+    "//ascii_rules2": "  - Keep all digits the same width (11 characters recommended)",
+    "//ascii_rules3": "  - Invalid/missing digits automatically fall back to defaults",
+    "//ascii_rules4": "",
+    "//ascii_tip": "Tip: Test your changes with: wincountdown 10s",
+    "//ascii_blank": "",
+
+    "ascii_digits": {
+        "0": [
+                " ######### ",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                " ######### "
+        ],
+        "1": [
+                "    ###    ",
+                "  #####    ",
+                "    ###    ",
+                "    ###    ",
+                "    ###    ",
+                "    ###    ",
+                "    ###    ",
+                "###########"
+        ],
+        "2": [
+                " ######### ",
+                "###     ###",
+                "        ###",
+                "      ###  ",
+                "    ###    ",
+                "  ###      ",
+                " ###       ",
+                "###########"
+        ],
+        "3": [
+                "###########",
+                "        ###",
+                "        ###",
+                "  #########",
+                "        ###",
+                "        ###",
+                "        ###",
+                "###########"
+        ],
+        "4": [
+                "     ##### ",
+                "    ###### ",
+                "   ### ### ",
+                "  ###  ### ",
+                " ###   ### ",
+                "###########",
+                "       ### ",
+                "       ### "
+        ],
+        "5": [
+                "###########",
+                "###        ",
+                "###        ",
+                "###########",
+                "        ###",
+                "        ###",
+                "###     ###",
+                " ######### "
+        ],
+        "6": [
+                "  #########",
+                " ###       ",
+                "###        ",
+                "###########",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                " ######### "
+        ],
+        "7": [
+                "###########",
+                "        ###",
+                "       ### ",
+                "      ###  ",
+                "     ###   ",
+                "    ###    ",
+                "   ###     ",
+                "   ###     "
+        ],
+        "8": [
+                " ######### ",
+                "###     ###",
+                "###     ###",
+                " ######### ",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                " ######### "
+        ],
+        "9": [
+                " ######### ",
+                "###     ###",
+                "###     ###",
+                "###     ###",
+                " ##########",
+                "        ###",
+                "       ### ",
+                "########   "
+        ],
+        ":": [
+                "           ",
+                "    ###    ",
+                "    ###    ",
+                "           ",
+                "           ",
+                "    ###    ",
+                "    ###    ",
+                "           "
+        ]
+}
+}

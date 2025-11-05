@@ -1,0 +1,28 @@
+# Maintainer: Stropitor stropitor.maintainer@pm.me
+pkgname=wincountdown
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A countdown timer and clock for Linux with large ASCII art display"
+arch=('any')
+url="https://github.com/Stropitor/wincountdown-linux"
+license=('GPL3')
+depends=('python')
+optdepends=('beep: for audio alerts with customizable frequency and duration')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
+sha256sums=('SKIP')  # Replace with actual sha256sum when releasing
+
+build() {
+    cd "${srcdir}/${pkgname}-linux-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-linux-${pkgver}"
+    python setup.py install --root="${pkgdir}" --optimize=1 --skip-build
+
+    # Install license
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+    # Install documentation
+    install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+}
