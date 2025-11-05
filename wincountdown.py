@@ -297,7 +297,7 @@ class ConfigManager:
     "//5": "",
 
     "//debug_section": "--- DEBUG MODE ---",
-    "//debug_note1": "Logs detailed execution info to ~/.cache/wincountdown/debug.log",
+    "//debug_note1": "Logs detailed execution info to debug.log (location depends on install method)",
     "//debug_note2": "Can also be enabled with --debug flag (recommended for troubleshooting)",
 
     "debug_mode": false,
@@ -866,7 +866,7 @@ def parse_arguments(args, config):
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(
         prog='wincountdown',
-        description='A countdown timer with ASCII art display for Windows',
+        description='A countdown timer with ASCII art display for Linux',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         add_help=False
     )
@@ -889,7 +889,7 @@ def parse_arguments(args, config):
     parser.add_argument('-c', '--clock', action='store_true',
                         help='Clock mode - display current system time')
     parser.add_argument('--debug', action='store_true',
-                        help='Enable debug mode (logs to wincountdown-debug.log)')
+                        help='Enable debug mode (logs to debug.log)')
 
     return parser.parse_args(args)
 
@@ -930,7 +930,7 @@ def print_help():
   |                                                                                                                   |
   +===================================================================================================================+
 
-  A countdown timer and clock for Windows with large ASCII art display, customizable alerts, and configuration.
+  A countdown timer and clock for Linux with large ASCII art display, customizable alerts, and configuration.
 
   +===================================================================================================================+
   | USAGE                                                                                                             |
@@ -968,10 +968,10 @@ def print_help():
       -c, --clock            Clock mode - display current system time (ignores <time>)
 
     Utility:
-      --debug                Enable debug logging to wincountdown-debug.log
+      --debug                Enable debug logging to debug.log
       -h, --help             Show this help message
 
-    Note: All beep settings and defaults can be configured in wincountdown-config.json
+    Note: All beep settings and defaults can be configured in config.json
 
   +===================================================================================================================+
   | EXAMPLES                                                                                                          |
@@ -1002,7 +1002,8 @@ def print_help():
   | CONFIGURATION FILE                                                                                                |
   +===================================================================================================================+
 
-    File: wincountdown-config.json (created automatically on first run)
+    File: config.json (created automatically on first run)
+    Location: ~/.config/wincountdown/ (installed) or script directory (standalone)
 
     Customize:
       - Default beep settings (frequency, count, duration, gap)
@@ -1044,7 +1045,7 @@ def print_help():
   +===================================================================================================================+
 
     - Press Ctrl+C to stop timer or exit clock at any time
-    - Edit wincountdown-config.json to set your preferred defaults
+    - Edit config.json to set your preferred defaults
     - Use --debug flag if something isn't working as expected
     - Loop mode plays only one beep before restarting (not the full beep count)
     - Metric mode: input is real time, but display shows metric equivalent
